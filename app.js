@@ -128,3 +128,40 @@ document.getElementById("reset").addEventListener("click", () => {
         chartInstance.destroy();
     }
 });
+
+function displayChart() {
+    const ctx = document.getElementById('resultChart').getContext('2d');
+    const productNames = products.map(product => product.name);
+    const productVotes = products.map(product => product.timesSelected);
+    const productShown = products.map(product => product.timesShown);
+
+    chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: productNames,
+            datasets: [
+                {
+                    label: 'Votos',
+                    data: productVotes,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Visto',
+                    data: productShown,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
