@@ -29,22 +29,23 @@ const products = [
     new Product("sweep", "img/sweep.png")
 ];
 
-const state = {
-    totalProducts: []
-}
+let previousIndices = [];
+let chartInstance;
 
 function generateRandomProducts() {
     const img1 = document.getElementById("img1");
     const img2 = document.getElementById("img2");
     const img3 = document.getElementById("img3");
 
-    const randomIndices = [];
+    let randomIndices = [];
     while (randomIndices.length < 3) {
         const randomIndex = Math.floor(Math.random() * products.length);
-        if (!randomIndices.includes(randomIndex)) {
+        if (!randomIndices.includes(randomIndex) && !previousIndices.includes(randomIndex)) {
             randomIndices.push(randomIndex);
         }
     }
+
+    previousIndices = randomIndices.slice();
 
     img1.src = products[randomIndices[0]].imagePath;
     img1.alt = products[randomIndices[0]].name;
@@ -61,7 +62,6 @@ function generateRandomProducts() {
     img3.dataset.index = randomIndices[2];
     img3.addEventListener("click", handleProductClick);
 
- 
     randomIndices.forEach(index => {
         products[index].timesShown++;
     });
@@ -78,10 +78,6 @@ function handleProductClick(event) {
         if (roundsLeft === 0) {
             document.getElementById("mostrarResultados").hidden = false;
             document.getElementById("reset").hidden = false;
-
-            img1.removeEventListener("click", handleProductClick);
-            img2.removeEventListener("click", handleProductClick);
-            img3.removeEventListener("click", handleProductClick);
         }
 
         generateRandomProducts();
@@ -105,6 +101,7 @@ function showResults() {
         resultados.appendChild(resultElement);
     });
 
+    displayChart();
     document.getElementById("mostrarResultados").hidden = true;
     document.getElementById("reset").hidden = false;
 
@@ -126,4 +123,8 @@ document.getElementById("reset").addEventListener("click", () => {
 
     document.getElementById("mostrarResultados").hidden = true;
     document.getElementById("reset").hidden = true;
+
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
 });
