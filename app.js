@@ -136,7 +136,7 @@ function displayChart() {
     const productShown = products.map(product => product.timesShown);
 
     chartInstance = new Chart(ctx, {
-        type: 'bar',
+        type: 'radar',
         data: {
             labels: productNames,
             datasets: [
