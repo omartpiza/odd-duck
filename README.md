@@ -1,4 +1,4 @@
-# LABORATORIO - 12
+# LABORATORIO - 13
 
 ## Odd Duck
 
@@ -15,15 +15,15 @@ Estoy emocionado por esta clase porque deseo mejorar mis habilidades en HTML y C
 
 ### Puntuación de Accesibilidad de Lighthouse
 
-* ![Lighthouse](/img/lighthouse-12.jpg)
+* ![Lighthouse](img/lighthouse-13.jpg)
 
 ### Reflexiones y Comentarios
 
 1. ¿Cómo te fue, en general?
-- Fue mas sencillo porque mi codigo estaba estructurado de tal forma que solo tuve que modificar un poco y luego solo agregar el chart.js
+- Fue mas sencillo porque mi me facilito el local storage.
 2. ¿Qué observaciones o preguntas tienes acerca de lo que hemos aprendido hasta ahora?
 - Quisiera saber de que otra forma lo hicieron mis compañeros y ademas, cual es la forma por dafault como se haria normalamente si fuese ya un experto.
 3. ¿Cuánto tiempo te tomó terminar esta tarea?
 - me tomo un aprox de 1:30h.
 4. Y, antes de que comenzaras, ¿cuánto tiempo creiste que te tomaría terminar esta tarea?
-- crei que me tomaria 3h omas
+- crei que me tomaria 2h o mas
