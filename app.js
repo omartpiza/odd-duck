@@ -65,6 +65,8 @@ function generateRandomProducts() {
     randomIndices.forEach(index => {
         products[index].timesShown++;
     });
+
+    saveToLocalStorage();
 }
 
 function handleProductClick(event) {
@@ -74,6 +76,8 @@ function handleProductClick(event) {
 
         clickedProduct.timesSelected++;
         roundsLeft--;
+
+        saveToLocalStorage();
 
         if (roundsLeft === 0) {
             document.getElementById("mostrarResultados").hidden = false;
@@ -86,6 +90,7 @@ function handleProductClick(event) {
 
 let roundsLeft = 25;
 
+loadFromLocalStorage();
 generateRandomProducts();
 
 document.getElementById("mostrarResultados").addEventListener("click", showResults);
@@ -116,6 +121,7 @@ document.getElementById("reset").addEventListener("click", () => {
         product.timesShown = 0;
         product.timesSelected = 0;
     });
+    saveToLocalStorage();
     generateRandomProducts();
 
     const resultados = document.getElementById("Resultados");
@@ -136,7 +142,7 @@ function displayChart() {
     const productShown = products.map(product => product.timesShown);
 
     chartInstance = new Chart(ctx, {
-        type: 'radar',
+        type: 'bar',
         data: {
             labels: productNames,
             datasets: [
@@ -164,4 +170,19 @@ function displayChart() {
             }
         }
     });
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+function loadFromLocalStorage() {
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+        const parsedProducts = JSON.parse(storedProducts);
+        parsedProducts.forEach((product, index) => {
+            products[index].timesShown = product.timesShown;
+            products[index].timesSelected = product.timesSelected;
+        });
+    }
 }
