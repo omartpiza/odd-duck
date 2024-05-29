@@ -8,6 +8,7 @@ header {
     background-color: #d8b6f8;
 }
 
+/* Estilo para el título principal */
 h1 {
     font-size: 80px;
     color: #627cc4;
@@ -18,10 +19,19 @@ h1 {
     animation: moveText 1s infinite alternate ease-in-out;
 }
 
-@keyframes moveText {
-    100% {
-        transform: translateX(50px);
+/* Animación para hacer parpadear el texto del titulo principal */
+@keyframes blinkText {
+    50% {
+        opacity: 0;
+        transform: scale(1.6);
     }
+}
+
+/* Aplicación de la animación de parpadeo al título */
+h1 {
+    animation: blinkText 4s infinite;
+
+    
 }
 
 .container {
@@ -51,12 +61,13 @@ img {
     
 }
 
+/* Efecto al pasar el mouse por encima de las imágenes */
 img:hover{
     border: 2px solid  #ff5f03;
-    box-shadow: 0 50px 50px rgb(238, 255, 0);
+    box-shadow: 50px 50px 50px rgb(250, 150, 0);
     transition: border 0.3s ease, box-shadow 0.3s ease;
 
-    transform: scale(1.06);
+    transform: scale(0.75) rotate(30deg);
     transition: transform 0.3s ease;
 
     opacity: 0.8;
@@ -73,17 +84,40 @@ img:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-p {
-    background-color: #d8b6f8;
-    border: 2px solid #ab1cec;
+section#Resultados {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2 columnas de tamaño igual */
+    gap: 5px;
+    justify-items: center;
+    background-color: #a6dce6;
+    border: 2px solid #ccc;
     border-radius: 10px;
-    padding: 1px;
-    margin-top: 2px;
-    text-align: center;
-    max-width: 500px;
+    padding: 10px ;
+    margin-top: 20px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p {
+    background-color: #e1bee7;
+    border: 1px solid #ab47bc;
+    border-radius: 10px;
+    padding: 4px;
+    text-align: center;
+    color: #4a148c;
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    width: 80%;
+}
+
+/* Efecto al pasar el mouse por encima de los párrafos */
+p:hover {
+    background-color: #ce93d8;
+    transform: scale(1.02);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -99,6 +133,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
+/* Efecto al pasar el mouse por encima de los botones */
 button:hover {
     background-color: #db5000;
     color: #fff;

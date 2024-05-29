@@ -32,6 +32,7 @@ const products = [
 let previousIndices = [];
 let chartInstance;
 
+// Función para generar productos aleatorios
 function generateRandomProducts() {
     const img1 = document.getElementById("img1");
     const img2 = document.getElementById("img2");
@@ -47,6 +48,7 @@ function generateRandomProducts() {
 
     previousIndices = randomIndices.slice();
 
+    // Asignar imágenes y eventos click
     img1.src = products[randomIndices[0]].imagePath;
     img1.alt = products[randomIndices[0]].name;
     img1.dataset.index = randomIndices[0];
@@ -62,6 +64,7 @@ function generateRandomProducts() {
     img3.dataset.index = randomIndices[2];
     img3.addEventListener("click", handleProductClick);
 
+    // Incrementar contador de veces mostrado para los productos seleccionados
     randomIndices.forEach(index => {
         products[index].timesShown++;
     });
@@ -69,6 +72,7 @@ function generateRandomProducts() {
     saveToLocalStorage();
 }
 
+// Función para manejar el click en un producto
 function handleProductClick(event) {
     if (roundsLeft > 0) {
         const clickedIndex = parseInt(event.target.dataset.index);
@@ -99,6 +103,7 @@ function showResults() {
     const resultados = document.getElementById("Resultados");
     resultados.innerHTML = "";
 
+    // Mostrar resultados de cada producto
     products.forEach(product => {
         const resultText = `${product.name} tiene ${product.timesSelected} votos, y se ha visto ${product.timesShown} veces.`;
         const resultElement = document.createElement("p");
@@ -106,15 +111,17 @@ function showResults() {
         resultados.appendChild(resultElement);
     });
 
-    displayChart();
+    displayChart(); // Mostrar gráfico
     document.getElementById("mostrarResultados").hidden = true;
     document.getElementById("reset").hidden = false;
 
+    // Remover eventos click de las imágenes
     document.getElementById("img1").removeEventListener("click", handleProductClick);
     document.getElementById("img2").removeEventListener("click", handleProductClick);
     document.getElementById("img3").removeEventListener("click", handleProductClick);
 }
 
+// Event listener para resetear la aplicación
 document.getElementById("reset").addEventListener("click", () => {
     roundsLeft = 25;
     products.forEach(product => {
@@ -135,6 +142,7 @@ document.getElementById("reset").addEventListener("click", () => {
     }
 });
 
+// Función para mostrar el gráfico
 function displayChart() {
     const ctx = document.getElementById('resultChart').getContext('2d');
     const productNames = products.map(product => product.name);
